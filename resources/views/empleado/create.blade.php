@@ -33,7 +33,8 @@
 
             <div class="form-group row">
                 <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                    <button type="button" class="btn btn-secondary" onclick="window.location='{{Route('empleados.index')}}';">Cancelar</button>
                 </div>
             </div>
         </form>

@@ -26,14 +26,16 @@
         <h3 class="text-muted">Crear empleado</h3>
 
 
-        <form action="{{ Route('empleados.store') }}" method="POST">
+        <form action="{{ Route('empleados.update', $empleado->id) }}" method="POST">
             @csrf
-            
+            {{ method_field('PUT') }}
+
             @include('empleado.form')
 
             <div class="form-group row">
                 <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                    <button type="button" class="btn btn-secondary" onclick="window.location='{{Route('empleados.index')}}';">Cancelar</button>
                 </div>
             </div>
         </form>

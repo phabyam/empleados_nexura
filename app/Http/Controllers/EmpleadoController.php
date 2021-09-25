@@ -50,7 +50,7 @@ class EmpleadoController extends Controller
             'area_id' => 'required',
             'descripcion' => 'required',
             'boletin' => 'nullable',
-            'roles' => 'required|array|size:1',
+            'roles' => 'required|array',
         ]);
         
         unset($validated['roles']);
@@ -63,7 +63,7 @@ class EmpleadoController extends Controller
         
         $empleado_nuevo->roles()->createMany( $roles_nuevos);
 
-        return view('empleado.index');
+        return redirect()->route('empleados.index');
     }
 
     /**
@@ -88,8 +88,10 @@ class EmpleadoController extends Controller
         $empleado = Empleado::findOrFail($id);
         $areas = Area::all();
         $roles = Rol::all();
+        
+        $roles_empleado = $empleado->roles->pluck('rol_id')->toArray();
 
-        return view('empleado.create', compact('empleado', 'areas', 'roles'));
+        return view('empleado.edit', compact('empleado', 'roles_empleado', 'areas', 'roles'));
     }
 
     /**
@@ -99,9 +101,31 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Empleado $empleado)
     {
-        //
+        $validated = $request->validate([            
+            'nombre' => 'required',
+            'email' => 'required|email',
+            'sexo' => 'required',
+            'area_id' => 'required',
+            'descripcion' => 'required',
+            'boletin' => 'nullable',
+            'roles' => 'required|array',
+        ]);
+        
+        unset($validated['roles']);
+
+       
+        $empleado->update($validated);
+        
+        
+        foreach ($request->get('roles') as $rol)
+            $roles_nuevos[] = ['rol_id' => $rol];
+
+        $empleado->roles()->delete();
+        $empleado->roles()->createMany($roles_nuevos);
+
+        return redirect()->route('empleados.index');
     }
 
     /**
@@ -110,8 +134,9 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, Empleado $empleado)
     {
-        //
+        $empleado->delete();
+        return redirect()->route('empleados.index');
     }
 }
