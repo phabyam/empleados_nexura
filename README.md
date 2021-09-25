@@ -21,5 +21,19 @@ DB_PASSWORD=contraseña del usuario de la base de datos**
 `php artisan serve`
 5. Si todo se hace bien ya debe estár funcionando.
 
-![](https://i.ibb.co/GxsKzg2/image.png)
+## Capturas
 
+### Indice de empleados (Listar)
+![](https://i.ibb.co/GxsKzg2/image.png)
+### Formulario crear y validación
+![](https://i.ibb.co/BKbPxZm/image.png)
+### Alertas de confirmación crear empleado
+![](https://i.ibb.co/ZcdhhXB/image.png)
+### Alertas de confirmación actualizar empleado
+![](https://i.ibb.co/pwnfXcr/image.png)
+### Alertas de eliminar empleado
+![](https://i.ibb.co/nLrG5td/image.png)
+### Versionado de la base de datos
+![](https://i.ibb.co/j39Nbcd/image.png)
+
+*Gracias por la oportunidad. :D*
