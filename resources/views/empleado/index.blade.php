@@ -51,7 +51,7 @@
                         <td class="text-center"><a href="{{ Route('empleados.edit', $empleado->id) }}"
                                 class="text-dark"><i class="fas fa-edit"></i></a></td>
                         <td class="btn_eliminar_empleado text-center"><a href="{{ Route('empleados.destroy', $empleado->id) }}"
-                                class="text-dark" data-toggle="modal" data-target="#deleteModal"><i
+                                class="text-dark" data-toggle="modal" data-target="#eliminarModal"><i
                                     class="fas fa-trash-alt"></i></a></td>
                     </tr>
                 @empty
@@ -65,7 +65,7 @@
     </div>
 
     <!-- Delete Warning Modal -->
-    <div class="modal modal-danger fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="Eliminar"
+    <div class="modal modal-danger fade" id="eliminarModal" tabindex="-1" role="dialog" aria-labelledby="Eliminar"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
           <form id="form_eliminar_empleado" action="{{ Route('empleados.destroy', 'id') }}" method="post">

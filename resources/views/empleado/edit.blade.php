@@ -23,10 +23,10 @@
     <div class="container p-2">
 
 
-        <h3 class="text-muted">Crear empleado</h3>
+        <h3 class="text-muted">Editar empleado</h3>
 
 
-        <form action="{{ Route('empleados.update', $empleado->id) }}" method="POST">
+        <form id="form_actualizar" action="{{ Route('empleados.update', $empleado->id) }}" method="POST">
             @csrf
             {{ method_field('PUT') }}
 
@@ -34,7 +34,7 @@
 
             <div class="form-group row">
                 <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                    <button id="boton_actualizar" type="button" class="btn btn-primary">Actualizar</button>
                     <button type="button" class="btn btn-secondary" onclick="window.location='{{Route('empleados.index')}}';">Cancelar</button>
                 </div>
             </div>
@@ -42,6 +42,32 @@
 
     </div>
 
+
+    <!-- Warning Modal -->
+    <div class="modal modal-danger fade" id="actualizarModal" tabindex="-1" role="dialog" aria-labelledby="Crear"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Actualizar empleado</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                  Está seguro que desea actualizar al empleado?                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" form="form_actualizar" class="btn btn-sm btn-primary">Si, ACTUALIZAR Empleado</button>
+                </div>
+               
+            </div>
+         
+        </div>
+    </div>
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -53,6 +79,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js" crossorigin="anonymous">
+</script>
+
+<script src="{{ asset('js/validacion.js')}}"></script>
+
+  
 </body>
 
 </html>

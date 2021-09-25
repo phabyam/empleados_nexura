@@ -1,3 +1,7 @@
+<div class="alert alert-primary" role="alert">
+    Los campos con asteriscos (*) son obligatorios
+  </div>
+
 <div class="form-group row">
     <label for="nombre" class="col-sm-2 col-form-label text-right font-weight-bold">Nombre completo *</label>
     <div class="col-sm-10">
@@ -23,7 +27,7 @@
 <fieldset class="form-group">
     <div class="row">
         <legend class="col-form-label col-sm-2 pt-0 text-right font-weight-bold">Sexo *</legend>
-        <div class="col-sm-10">
+        <div class="col-sm-10 radio-group ">
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="sexo" id="maculino" value="M"
                     {{ old('sexo', $empleado->sexo ?? '') == 'M' ? 'checked' : '' }}>
@@ -40,7 +44,7 @@
             </div>
             @if ($errors->has('sexo'))<small class="text-danger">{{ $errors->first('sexo') }}</small>@endif
         </div>
-       
+
     </div>
 </fieldset>
 
@@ -49,7 +53,8 @@
     <div class="col-sm-10">
         <select class="form-control" id="area_id" name="area_id">
             @foreach ($areas as $area)
-                <option {{ old('area_id', $empleado->area_id??null) == $area->id ? 'selected' : '' }} value="{{ $area->id }}">{{ $area->nombre }}</option>
+                <option {{ old('area_id', $empleado->area_id ?? null) == $area->id ? 'selected' : '' }}
+                    value="{{ $area->id }}">{{ $area->nombre }}</option>
             @endforeach
         </select>
     </div>
@@ -86,7 +91,7 @@
 
 <div class="form-group row">
     <label for="descripcion" class="col-sm-2 col-form-label text-right font-weight-bold">Roles *</label>
-    <div class="col-sm-10">
+    <div class="col-sm-10 checkbox-group ">
 
         @foreach ($roles as $rol)
             <div class="form-check">
